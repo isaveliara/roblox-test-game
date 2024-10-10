@@ -1,0 +1,2 @@
+- Esse repositório contém os scripts e as anotações do projeto de um jogo que estou fazendo
+- Estão organizados de forma diferente de como é no roblox studio, por exemplo, a forma que estão organizados os scripts dos minigames
