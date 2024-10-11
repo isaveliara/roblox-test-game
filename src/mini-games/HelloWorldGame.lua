@@ -17,7 +17,7 @@ end
 --entrada
 function HelloWorldGame.Start()
 	HelloWorldGame.Initialize() --Essa função deve ser chamada no começo para que as informações do jogo sejam inicializadas.
-	
+
 	--GameDisplay (pode ser acionado se você quiser alterar as informações para uma outra no meio do jogo)
 	--GameMaster:InfoGameDisplay(HelloWorldGame.Name, HelloWorldGame.Description)
 
@@ -26,7 +26,7 @@ function HelloWorldGame.Start()
 
 	--subtítulo
 	GameMaster:SubMessageDisplay("Prepare-se para começar!")
-	
+
 	--mensagem de info- adicional
 	GameMaster:CenterMessageLabelDisplay("terminando em 5 segundos")
 	wait(1)

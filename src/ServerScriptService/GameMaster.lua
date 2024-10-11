@@ -35,4 +35,9 @@ function GameMaster:CopyRightMessage(author, link)
 	RemoteEvents.AddCenterLabelMessage:FireAllClients("© - "..author.." ("..link..")")
 end
 
+--limpar todo o display do jogador.
+function GameMaster:CLSDisplayUI()
+	RemoteEvents.CLSDisplayUI:FireAllClients()
+end
+
 return GameMaster

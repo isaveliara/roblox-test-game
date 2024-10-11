@@ -109,7 +109,6 @@ function RaceGame.Start()
 					player:SetAttribute("TouchedCheckpoint2", true)
 					GameMaster:CenterMessageLabelDisplay(player.Name .. " tocou o checkpoint 2! Venceu a corrida!")
 					playersCompleted[player] = true
-					RaceGame.End()
 				end
 			end
 		end

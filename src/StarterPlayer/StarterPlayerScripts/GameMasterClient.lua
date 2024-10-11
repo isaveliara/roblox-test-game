@@ -167,3 +167,16 @@ RemoteEvents.AddCenterLabelMessage.OnClientEvent:Connect(function(messageText, f
 		animateTransparencyAndPosition(msg.label, UDim2.new(0.5, 0, newPosition, 0), 0, 0.5) --move as proximas palavras
 	end
 end)
+
+RemoteEvents.CLSDisplayUI.OnClientEvent:Connect(function()
+	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+	for _, gui in ipairs(playerGui:GetChildren()) do
+		if gui:IsA("ScreenGui") then
+			gui:Destroy()
+		end
+	end
+
+	--tambem para a queue
+	messageQueue = {}
+end)

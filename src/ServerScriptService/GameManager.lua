@@ -11,6 +11,9 @@ local availableMinigames = {"HelloWorldGame","RaceGame"}
 
 --Albert Ainsten do nosso jogo
 function GameManager:StartMinigame(minigameName)
+	--cls
+	GameMaster:CLSDisplayUI()
+	
 	print("Iniciando minigame:", minigameName)
 
 	--abre o módulo do jogo sorteado
@@ -22,7 +25,8 @@ function GameManager:StartMinigame(minigameName)
 	end
 	
 	--Vulnerabilidade: O evento OnEnd determina o numero de minigames que acontecerá depois do minigame acabar
-	--se o OnEnd for chamado 2 vezes por exemplo, vai ter 2 minigames ao mesmo tempo.
+	--se o OnEnd for chamado 2 vezes por exemplo, vai ter 2 minigames ao mesmo tempo. (É o problema de cima talvez)
+	
 
 	--conectar
 	onEndConnection = currentMinigame.OnEnd.Event:Connect(function()
