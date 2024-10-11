@@ -11,6 +11,7 @@ NomeDoScript.OnEnd = Instance.new("BindableEvent")
 function HelloWorldGame.Initialize()
 	HelloWorldGame.Name = "test game"
 	HelloWorldGame.Description = "Apenas um teste de minigame."
+	HelloWorldGame.Author = "pixelar144"
 	HelloWorldGame.GameVersion = 1 --mais recente
 	HelloWorldGame.TypeGame = "FreeForAll"
 	HelloWorldGame.Maps = {"raceMap"} --lista dos mapas que o jogo pode ser usado.
@@ -42,9 +43,10 @@ Ele dá alguns métodos, como display de scoreboard, informações do jogo, e ou
 - InfoGameDisplay
 ```lua
 GameMaster:InfoGameDisplay(HelloWorldGame.Name, HelloWorldGame.Description)
+--O GameManager já inicia o mini=game com as informações dele, então isso pode ser usado se você quiser alterar no meio da partida.
 ```
 
-- MessageDisplay
+- MessageDisplay 
 ```lua
 GameMaster:MessageDisplay("Teste")
 ```
@@ -52,4 +54,9 @@ GameMaster:MessageDisplay("Teste")
 - SubMessageDisplay
 ```lua
 GameMaster:SubMessageDisplay("Teste Só que Menor")
+```
+
+- CenterMessageLabelDisplay (pode no máximo 3 mensagens ao mesmo tempo, que desaparecem em 4 segundos.)
+```lua
+GameMaster:CenterMessageLabelDisplay("terminando em 5 segundos")
 ```

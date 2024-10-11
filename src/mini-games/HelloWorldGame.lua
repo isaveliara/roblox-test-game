@@ -18,7 +18,7 @@ end
 function HelloWorldGame.Start()
 	HelloWorldGame.Initialize() --Essa função deve ser chamada no começo para que as informações do jogo sejam inicializadas.
 	
-	--GameDisplay (pode ser acionado se você quiser alterar as informações)
+	--GameDisplay (pode ser acionado se você quiser alterar as informações para uma outra no meio do jogo)
 	--GameMaster:InfoGameDisplay(HelloWorldGame.Name, HelloWorldGame.Description)
 
 	--mensagem inicial
@@ -34,7 +34,7 @@ function HelloWorldGame.Start()
 
 	wait(4) --delay
 
-	--placar de exemplo. Pode ser definido nos scripts jogo
+	--placar de exemplo. Deve ser definido nos scripts jogo para aparecer
 	local scores = {
 		["Player1"] = 10,
 		["Player2"] = 20,
