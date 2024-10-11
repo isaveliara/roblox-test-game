@@ -91,6 +91,7 @@ RemoteEvents.DisplayMessage.OnClientEvent:Connect(function(messageText)
 	gui:Destroy()
 end)
 
+
 --exibir a sub-mensagem no cliente, é a centralizada no topo
 RemoteEvents.DisplaySubMessage.OnClientEvent:Connect(function(subMessageText)
 	local gui = Instance.new("ScreenGui")
@@ -119,33 +120,50 @@ end)
 local messageQueue = {} --fila
 local maxMessages = 3 --limite
 
+local function animateTransparencyAndPosition(guiObject, finalPosition, finalTransparency, duration)
+	local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+	local tweenPosition = TweenService:Create(guiObject, tweenInfo, {Position = finalPosition})
+	local tweenTransparency = TweenService:Create(guiObject, tweenInfo, {TextTransparency = finalTransparency, BackgroundTransparency = finalTransparency})
+	tweenPosition:Play()
+	tweenTransparency:Play()
+end
+
+--AppendLabel --Possui uma Queue para mostrar as mensagens enviadas pelo script na tela do jogador, em baixo e centralizadas.
 RemoteEvents.AddCenterLabelMessage.OnClientEvent:Connect(function(messageText, fontSize)
-	fontSize = fontSize or 28--28 de tamanho padrão
+	fontSize = fontSize or 28 --28 tamanho padrão
 	local gui = Instance.new("ScreenGui")
 	local messageLabel = Instance.new("TextLabel")
 
+	--configs
 	messageLabel.Text = messageText
 	messageLabel.Font = Enum.Font.SourceSansBold
-	messageLabel.TextSize = 28 --tamanho
+	messageLabel.TextSize = fontSize --tamanho da fonte
 	messageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	messageLabel.BackgroundTransparency = 0.5
 	messageLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50) --background cinza escuro
 	messageLabel.Size = UDim2.new(0.4, 0, 0.08, 0)
 	messageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 
+	--ajustar a posição das mensagens
 	local messagePosition = 0.9 - (#messageQueue * 0.1)
-	messageLabel.Position = UDim2.new(0.5, 0, messagePosition, 0) --ajustar
+	messageLabel.Position = UDim2.new(0.5, 0, messagePosition, 0)
 	messageLabel.Parent = gui
 	gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	table.insert(messageQueue, {gui = gui, label = messageLabel})
 
-	wait(3)
-	gui:Destroy()
 
+	wait(3)
+	--animação antes
+	animateTransparencyAndPosition(messageLabel, messageLabel.Position, 1, 1) --transparência para invisível em 1 segundo
+	wait(1) --tempo para a animação acabar
+
+	--remove a mensagem e a gui
+	gui:Destroy()
 	table.remove(messageQueue, 1)
 
+	--reorganizar as posições
 	for i, msg in ipairs(messageQueue) do
 		local newPosition = 0.9 - ((i - 1) * 0.1)
-		animateToPosition(msg.label, UDim2.new(0.5, 0, newPosition, 0), 0.5)
+		animateTransparencyAndPosition(msg.label, UDim2.new(0.5, 0, newPosition, 0), 0, 0.5) --move as proximas palavras
 	end
 end)
