@@ -42,9 +42,10 @@ Ele dá alguns métodos, como display de scoreboard, informações do jogo, e ou
 - InfoGameDisplay
 ```lua
 GameMaster:InfoGameDisplay(HelloWorldGame.Name, HelloWorldGame.Description)
+--O GameManager já inicia o mini=game com as informações dele, então isso pode ser usado se você quiser alterar no meio da partida.
 ```
 
-- MessageDisplay
+- MessageDisplay 
 ```lua
 GameMaster:MessageDisplay("Teste")
 ```
