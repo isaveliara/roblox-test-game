@@ -26,12 +26,12 @@ RemoteEvents.DisplayInfo.OnClientEvent:Connect(function(gameName, gameDescriptio
 	--configurações da label de scoreboard
 	infoLabel.Text = displayName .. "\n" .. displayDescription
 	infoLabel.Font = Enum.Font.SourceSansBold
-	infoLabel.TextSize = 28 --tamanho da fonte
+	infoLabel.TextSize = 22 --tamanho da fonte
 	infoLabel.TextColor3 = Color3.fromRGB(170, 49, 148) --uma cor rosa
 	infoLabel.BackgroundTransparency = 1 --sem o fundo
 	infoLabel.Size = UDim2.new(0.35, 0, 0.15, 0)
 	infoLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-	infoLabel.Position = UDim2.new(0.5, 0, -0.2, 0) --começa fora da tela, no topo
+	infoLabel.Position = UDim2.new(0.9, 0, -0.2, 0) --começa fora da tela, no topo
 	infoLabel.Parent = gui
 	gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -62,7 +62,7 @@ RemoteEvents.DisplayScore.OnClientEvent:Connect(function(scores)
 	scoreLabel.BackgroundTransparency = 1 --sem o fundo
 	scoreLabel.Size = UDim2.new(0.3, 0, 0.25, 0) --evitar sobreposição com as infos display
 	scoreLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-	scoreLabel.Position = UDim2.new(0.85, 0, 0.3, 0) --
+	scoreLabel.Position = UDim2.new(0.9, 0, 0.4, 0) --
 	scoreLabel.Parent = gui
 	gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 end)
@@ -114,14 +114,13 @@ RemoteEvents.DisplaySubMessage.OnClientEvent:Connect(function(subMessageText)
 end)
 
 
---AppendLabel:
---Possui uma Queue para mostrar as mensagens enviadas pelo script na tela do jogador
---suas mensagens aparecem em baixo e centralizadas.
 
+--AppendLabel --Possui uma Queue para mostrar as mensagens enviadas pelo script na tela do jogador, em baixo e centralizadas.
 local messageQueue = {} --fila
 local maxMessages = 3 --limite
 
-RemoteEvents.AddCenterLabelMessage.OnClientEvent:Connect(function(messageText)
+RemoteEvents.AddCenterLabelMessage.OnClientEvent:Connect(function(messageText, fontSize)
+	fontSize = fontSize or 28--28 de tamanho padrão
 	local gui = Instance.new("ScreenGui")
 	local messageLabel = Instance.new("TextLabel")
 

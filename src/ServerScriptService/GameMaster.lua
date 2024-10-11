@@ -30,4 +30,9 @@ function GameMaster:CenterMessageLabelDisplay(messageText)
 	RemoteEvents.AddCenterLabelMessage:FireAllClients(messageText)
 end
 
+--display para rótulo, mas com formatação de copyright (podem estar lançadas até 3 mensagens no máximo)
+function GameMaster:CopyRightMessage(author, link)
+	RemoteEvents.AddCenterLabelMessage:FireAllClients("© - "..author.." ("..link..")")
+end
+
 return GameMaster
