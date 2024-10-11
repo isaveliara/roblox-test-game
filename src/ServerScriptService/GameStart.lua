@@ -21,7 +21,7 @@ function GameStart:StartGame(minigameName)
 	--outra função obrigatória no script
 	minigame.Start()
 
-	--o minigame dispara o evento OnEnd internamente, e o GameManager fica esperando esse evento
+	--o minigame dispara o evento OnEnd internamente, e o GameManager já fica esperando esse evento
 end
 
 return GameStart

@@ -23,8 +23,13 @@ function HelloWorldGame.Start()
 
 	--subtítulo
 	GameMaster:SubMessageDisplay("Prepare-se para começar!")
+	
+	--mensagem de info- adicional
+	GameMaster:CenterMessageLabelDisplay("terminando em 5 segundos")
+	wait(1)
+	GameMaster:CenterMessageLabelDisplay("Adicione o jogo nos seus favoritos!")
 
-	wait(5) --delay
+	wait(4) --delay
 
 	--placar de exemplo. Pode ser definido nos scripts jogo
 	local scores = {
