@@ -8,6 +8,7 @@ HelloWorldGame.OnEnd = Instance.new("BindableEvent")
 function HelloWorldGame.Initialize()
 	HelloWorldGame.Name = "Hello World Game"
 	HelloWorldGame.Description = "Apenas um exemplo simples de minigame."
+	HelloWorldGame.Author = "pixelar144"
 	HelloWorldGame.GameVersion = 1
 	HelloWorldGame.TypeGame = "FreeForAll"
 	HelloWorldGame.Maps = {"raceMap"} -- Lista de mapas permitidos
@@ -15,12 +16,10 @@ end
 
 --entrada
 function HelloWorldGame.Start()
-	HelloWorldGame.Initialize()
-	--Essa função deve ser chamada no começo para que as informações do jogo sejam inicializadas.
+	HelloWorldGame.Initialize() --Essa função deve ser chamada no começo para que as informações do jogo sejam inicializadas.
 	
-	
-	--GameDisplay
-	GameMaster:InfoGameDisplay(HelloWorldGame.Name, HelloWorldGame.Description)
+	--GameDisplay (pode ser acionado se você quiser alterar as informações)
+	--GameMaster:InfoGameDisplay(HelloWorldGame.Name, HelloWorldGame.Description)
 
 	--mensagem inicial
 	GameMaster:MessageDisplay("Bem-vindo ao Hello World Game!")
