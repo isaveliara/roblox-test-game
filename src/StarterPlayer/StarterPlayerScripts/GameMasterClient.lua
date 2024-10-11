@@ -1,4 +1,6 @@
---Esse arquivo é um local script no StarterPlayerScripts
+--Esse arquivo é um local script no StarterPlayerScripts.
+--é um script intermediário para acessar o jogador, e interagir diretamente com ele.
+--seus métodos são utilizados pelo GameMaster.
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
@@ -109,4 +111,42 @@ RemoteEvents.DisplaySubMessage.OnClientEvent:Connect(function(subMessageText)
 	--remover após 4 segundos
 	wait(4)
 	gui:Destroy()
+end)
+
+
+--AppendLabel:
+--Possui uma Queue para mostrar as mensagens enviadas pelo script na tela do jogador
+--suas mensagens aparecem em baixo e centralizadas.
+
+local messageQueue = {} --fila
+local maxMessages = 3 --limite
+
+RemoteEvents.AddCenterLabelMessage.OnClientEvent:Connect(function(messageText)
+	local gui = Instance.new("ScreenGui")
+	local messageLabel = Instance.new("TextLabel")
+
+	messageLabel.Text = messageText
+	messageLabel.Font = Enum.Font.SourceSansBold
+	messageLabel.TextSize = 28 --tamanho
+	messageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	messageLabel.BackgroundTransparency = 0.5
+	messageLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50) --background cinza escuro
+	messageLabel.Size = UDim2.new(0.4, 0, 0.08, 0)
+	messageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+
+	local messagePosition = 0.9 - (#messageQueue * 0.1)
+	messageLabel.Position = UDim2.new(0.5, 0, messagePosition, 0) --ajustar
+	messageLabel.Parent = gui
+	gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	table.insert(messageQueue, {gui = gui, label = messageLabel})
+
+	wait(3)
+	gui:Destroy()
+
+	table.remove(messageQueue, 1)
+
+	for i, msg in ipairs(messageQueue) do
+		local newPosition = 0.9 - ((i - 1) * 0.1)
+		animateToPosition(msg.label, UDim2.new(0.5, 0, newPosition, 0), 0.5)
+	end
 end)
