@@ -2,6 +2,16 @@
 --é um script intermediário para acessar o jogador, e interagir diretamente com ele.
 --seus métodos são utilizados pelo GameMaster.
 
+--definir se o player está no jogo ou não
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local function isPlayerInGame()
+	return player:GetAttribute("InGame") == true
+end
+
+
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 local RemoteEvents = ReplicatedStorage:WaitForChild("Events")
@@ -16,6 +26,8 @@ end
 
 --exibir informações do jogo no cliente, com animação
 RemoteEvents.DisplayInfo.OnClientEvent:Connect(function(gameName, gameDescription)
+	if not isPlayerInGame() then return end  --verifica se o jogador está no jogo
+	
 	local gui = Instance.new("ScreenGui")
 	local infoLabel = Instance.new("TextLabel")
 
@@ -42,6 +54,8 @@ end)
 
 --exibir ScoreBoard
 RemoteEvents.DisplayScore.OnClientEvent:Connect(function(scores)
+	if not isPlayerInGame() then return end  --verifica se o jogador está no jogo
+	
 	local gui = Instance.new("ScreenGui")
 	local scoreLabel = Instance.new("TextLabel")
 
@@ -70,6 +84,8 @@ end)
 
 --exibir mensagem no cliente, sem animação, é a centralizada no topo
 RemoteEvents.DisplayMessage.OnClientEvent:Connect(function(messageText)
+	if not isPlayerInGame() then return end  --verifica se o jogador está no jogo
+	
 	local gui = Instance.new("ScreenGui")
 	local messageLabel = Instance.new("TextLabel")
 
@@ -94,6 +110,8 @@ end)
 
 --exibir a sub-mensagem no cliente, é a centralizada no topo
 RemoteEvents.DisplaySubMessage.OnClientEvent:Connect(function(subMessageText)
+	if not isPlayerInGame() then return end  --verifica se o jogador está no jogo
+	
 	local gui = Instance.new("ScreenGui")
 	local subMessageLabel = Instance.new("TextLabel")
 
@@ -130,6 +148,8 @@ end
 
 --AppendLabel --Possui uma Queue para mostrar as mensagens enviadas pelo script na tela do jogador, em baixo e centralizadas.
 RemoteEvents.AddCenterLabelMessage.OnClientEvent:Connect(function(messageText, fontSize)
+	if not isPlayerInGame() then return end  --verifica se o jogador está no jogo
+	
 	fontSize = fontSize or 28 --28 tamanho padrão
 	local gui = Instance.new("ScreenGui")
 	local messageLabel = Instance.new("TextLabel")
@@ -169,6 +189,7 @@ RemoteEvents.AddCenterLabelMessage.OnClientEvent:Connect(function(messageText, f
 end)
 
 RemoteEvents.CLSDisplayUI.OnClientEvent:Connect(function()
+	if not isPlayerInGame() then return end  --verifica se o jogador está no jogo
 	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 	for _, gui in ipairs(playerGui:GetChildren()) do

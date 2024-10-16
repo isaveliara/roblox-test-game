@@ -1,9 +1,14 @@
 --Esse arquivo é um module script no ServerScriptService
+--Script inutilizado!
+
 
 local GameStart = {}
 local GameMaster = require(game.ServerScriptService.GameMaster) --importar master
 
 function GameStart:StartGame(minigameName)
+	--TODO: Teoricamente, deveria interagir apenas com os jogadores com o atributo de InGame em true.
+	
+	
 	--tenta importar o minigame selecionado
 	local minigame = require(game.ServerScriptService[minigameName])
 
@@ -13,7 +18,7 @@ function GameStart:StartGame(minigameName)
 	--carregar 1 mapa dos que estiverem disponíveis para o jogo (adicionar votação depois...)
 	local selectedMap = minigame.Maps[math.random(1, #minigame.Maps)]
 	print("Carregando o mapa:", selectedMap)
-	--logica aqui (sem lógica, sou burra)
+	--logica fica aqui (sem lógica, sou burra)
 
 	--interface
 	GameMaster:InfoGameDisplay(minigame.Name, minigame.Description)

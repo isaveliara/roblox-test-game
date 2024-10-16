@@ -1,3 +1,5 @@
+--minigame RaceGame na segunda versão: Defini a aparição dos jogadores ganhadores na scoreboard.
+
 local Players = game:GetService("Players")
 local Debris = game:GetService("Debris")
 local RunService = game:GetService("RunService")
@@ -15,8 +17,8 @@ function RaceGame.Initialize()
 	RaceGame.Maps = {"raceMap"}
 end
 
--- Propriedades da corrida
-local raceMap = workspace:FindFirstChild("raceMap")
+--Propriedades da corrida--
+local raceMap = workspace:FindFirstChild("raceMap") or workspace:FindFirstChild("Lobby") -----------adiciona o lobby para testar--------------
 local checkpointSize = Vector3.new(3, 1, 3) --tamanho dos checkpoints
 local numCheckpoints = 2 --numero de checkpoints
 local minigameDuration = 30 --duração máxima em segundos
@@ -68,6 +70,14 @@ local function teleportPlayersToStart()
 	end
 end
 
+--adicionar na scoreboard
+local scores = {}
+local function AddUserOnScoreBoard(player)
+	local playerName = player.Name
+	if not scores[playerName] then
+		scores[playerName] = 0
+	end
+end
 
 --entrada
 function RaceGame.Start()
@@ -107,8 +117,12 @@ function RaceGame.Start()
 				--checkpoint 2
 				if player:GetAttribute("TouchedCheckpoint1") and not player:GetAttribute("TouchedCheckpoint2") and playerTouchedCheckpoint(player, checkpoints[2]) then
 					player:SetAttribute("TouchedCheckpoint2", true)
-					GameMaster:CenterMessageLabelDisplay(player.Name .. " tocou o checkpoint 2! Venceu a corrida!")
+					--GameMaster:CenterMessageLabelDisplay(player.Name .. " tocou o checkpoint 2! Venceu a corrida!")
+					print(player.Name.." encerrou RaceGame!")
+					
 					playersCompleted[player] = true
+					AddUserOnScoreBoard(player)----------
+					GameMaster:ScoreBoardDisplay(scores)
 				end
 			end
 		end
@@ -129,7 +143,6 @@ function RaceGame.Start()
 	endMinigameTimer:Disconnect()
 	RaceGame.End()
 end
-
 
 function RaceGame.End()
 	RaceGame.OnEnd:Fire() --bye

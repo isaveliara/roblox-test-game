@@ -23,6 +23,14 @@ function HelloWorldGame.Start()
 
 	--mensagem inicial
 	GameMaster:MessageDisplay("Bem-vindo ao Hello World Game!")
+	
+	--placar de exemplo. Deve ser definido nos scripts jogo para aparecer
+	local scores = {
+		["Player1"] = 10,
+		["Player2"] = 20,
+		["Player3"] = 15
+	}
+	GameMaster:ScoreBoardDisplay(scores)
 
 	--subtítulo
 	GameMaster:SubMessageDisplay("Prepare-se para começar!")
@@ -33,14 +41,6 @@ function HelloWorldGame.Start()
 	GameMaster:CenterMessageLabelDisplay("Adicione o jogo nos seus favoritos!")
 
 	wait(4) --delay
-
-	--placar de exemplo. Deve ser definido nos scripts jogo para aparecer
-	local scores = {
-		["Player1"] = 10,
-		["Player2"] = 20,
-		["Player3"] = 15
-	}
-	GameMaster:ScoreBoardDisplay(scores)
 
 	--finalizar o jogo chamando o OnEnd
 	HelloWorldGame.End()

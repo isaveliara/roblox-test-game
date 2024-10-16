@@ -1,0 +1,11 @@
+Model Information:
+* title:	Blender Logo
+* source:	https://sketchfab.com/3d-models/blender-logo-f4105cc7de434f2cbbc3b3d12343bb8f
+* author:	shahrukh7587 (https://sketchfab.com/shahrukh7587)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Blender Logo" (https://sketchfab.com/3d-models/blender-logo-f4105cc7de434f2cbbc3b3d12343bb8f) by shahrukh7587 (https://sketchfab.com/shahrukh7587) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

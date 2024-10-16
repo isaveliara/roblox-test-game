@@ -11,8 +11,8 @@ local availableMinigames = {"HelloWorldGame","RaceGame"}
 
 --Albert Ainsten do nosso jogo
 function GameManager:StartMinigame(minigameName)
-	--cls
-	GameMaster:CLSDisplayUI()
+	GameMaster:CLSDisplayUI()--cls
+	wait(1)
 	
 	print("Iniciando minigame:", minigameName)
 
