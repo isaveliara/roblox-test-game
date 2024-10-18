@@ -40,6 +40,6 @@ luac.out
 *.hex
 
 
-
+ost/
 models/
 v2tests/
