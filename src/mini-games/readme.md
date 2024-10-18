@@ -13,6 +13,7 @@ function HelloWorldGame.Initialize()
 	HelloWorldGame.Description = "Apenas um teste de minigame."
 	HelloWorldGame.Author = "pixelar144"
 	HelloWorldGame.GameVersion = 1 --mais recente
+	HelloWorldGame.PvpType = "freeUse" --pode ser friendly, para não ter pvp.
 	HelloWorldGame.TypeGame = "FreeForAll"
 	HelloWorldGame.Maps = {"raceMap"} --lista dos mapas que o jogo pode ser usado.
     --Pode ser escolhido os seguintes mapas: raceMap

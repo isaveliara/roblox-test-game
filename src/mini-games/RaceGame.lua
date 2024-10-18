@@ -14,11 +14,12 @@ function RaceGame.Initialize()
 	RaceGame.Author = "pixelar144"
 	RaceGame.GameVersion = 1
 	RaceGame.TypeGame = "FreeForAll"
+	RaceGame.PvpType = "friendly" --todos os recursos disponíveis
 	RaceGame.Maps = {"raceMap"}
 end
 
---Propriedades da corrida--
-local raceMap = workspace:FindFirstChild("raceMap") or workspace:FindFirstChild("Lobby") -----------adiciona o lobby para testar--------------
+-- Propriedades da corrida--
+local raceMap = workspace:FindFirstChild("raceMap") or workspace:FindFirstChild("LobbyMap") -----------adiciona o lobby para testar--------------
 local checkpointSize = Vector3.new(3, 1, 3) --tamanho dos checkpoints
 local numCheckpoints = 2 --numero de checkpoints
 local minigameDuration = 30 --duração máxima em segundos
@@ -103,6 +104,8 @@ function RaceGame.Start()
 			raceInProgress = false
 		end
 	end)
+	
+	GameMaster:ScoreBoardDisplay({})--inicializa o display da scoreboard
 
 	--main loop
 	while raceInProgress do

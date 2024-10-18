@@ -9,7 +9,7 @@ local onEndConnection --armazena a conexão do evento OnEnd
 --minigames disponíveis, adicionar iteração para definir eles automaticamente...
 local availableMinigames = {"HelloWorldGame","RaceGame"}
 
---Albert Ainsten do nosso jogo
+-- Albert Ainsten do jogo --
 function GameManager:StartMinigame(minigameName)
 	GameMaster:CLSDisplayUI()--cls
 	wait(1)
@@ -51,6 +51,16 @@ function GameManager:StartMinigame(minigameName)
 	local selectedMap = currentMinigame.Maps[math.random(1, #currentMinigame.Maps)]
 	print("Carregando o mapa:", selectedMap)
 	
+	--abrir o método initialize da função para pegar o PvpType e definir atraves dele
+	local pvptype = currentMinigame.PvpType
+	if pvptype == "freeUse" then
+		print("O tipo do jogo é FreeUse...")
+		elseif pvptype == "friendly" then
+			print("O tipo do jogo é Friendly...")
+		else
+			warn("tipo desconhecido de jogo!")
+		end
+	
 	--iniciar o minigame
 	currentMinigame.Start()
 end
@@ -68,7 +78,7 @@ function GameManager:MonitorMinigames()
 	self:StartNextMinigame()
 end
 
---Inicia o ainsten do jogo caso o servidor seja um recém aberto, essa é a entrada de tudo
+--Inicia o ainsten caso o servidor seja um recém aberto, essa é a entrada de tudo--
 GameManager:MonitorMinigames()
 
 return GameManager

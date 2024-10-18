@@ -7,11 +7,12 @@ HelloWorldGame.OnEnd = Instance.new("BindableEvent")
 --infos do game
 function HelloWorldGame.Initialize()
 	HelloWorldGame.Name = "Hello World Game"
-	HelloWorldGame.Description = "Apenas um exemplo simples de minigame."
+	HelloWorldGame.Description = "Just a eg. game"
 	HelloWorldGame.Author = "pixelar144"
 	HelloWorldGame.GameVersion = 1
 	HelloWorldGame.TypeGame = "FreeForAll"
-	HelloWorldGame.Maps = {"raceMap"} -- Lista de mapas permitidos
+	HelloWorldGame.PvpType = "freeUse" --todos os recursos disponíveis
+	HelloWorldGame.Maps = {"raceMap"} --Lista de mapas permitidos
 end
 
 --entrada
